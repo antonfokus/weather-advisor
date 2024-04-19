@@ -35,11 +35,11 @@ def body_style():
             font-family: 'Comfortaa', sans-serif !important;
         }}
         h1 {{
-            color: #e6e6fa;
+            color: #ba66ff;
             
         }}
         label {{
-            color: #e6e6fa;
+            color: #d199ff;
             
         }}
 
@@ -83,7 +83,7 @@ def main():
                     f"""
                     <style>
                     h3 {{
-                        color: white;
+                        color: black;
                     
                     }}
                     
