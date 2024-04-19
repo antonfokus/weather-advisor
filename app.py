@@ -21,7 +21,53 @@ weather_colors = {
     "fog": "#F4F9FF", 
 }
 
+def footer(background_color=""):
+    st.markdown(
+        f"""
+        <style>
+        .footer {{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: {background_color};
+        }}
+        
+        .grid-container {{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 10px;
+        }}
+        .grid-item {{
+            text-align: center;
+        }}
+        .name {{
+            color: white;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
+    st.markdown(
+        """
+        <div class="footer">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <div class="name">Проект погодного советника</div>
+                    <div class="links">
+                    </div>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 def body_style():
     st.markdown(
