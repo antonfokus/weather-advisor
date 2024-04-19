@@ -6,6 +6,8 @@ from keras.models import load_model
 
 from recommender import get_songs_by_weather, get_movies_by_weather
 
+temp_model = keras.models.load_model("temp_full.keras")
+
 weather_images = {
     "sun": "assets/img_sun.jpeg",
     "rain": "assets/img_rain.jpeg",
@@ -122,7 +124,7 @@ def main():
     st.subheader('Предсказание температуры')
     temps = [st.text_input(f'Число {i+1}', value='0') for i in range(10)]
     if st.button("Предсказать температуру"):
-        st.write(temps)
+        st.write(temp_model.predict(temps))
 
     
     weather = st.selectbox(
