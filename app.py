@@ -32,7 +32,7 @@ def footer(background_color=""):
             width: 100%;
             padding: 10px;
             text-align: center;
-            background-color: {background_color};
+            background-color: #FF0000;
         }}
         
         .grid-container {{
