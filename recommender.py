@@ -1,6 +1,4 @@
-sudo pip3 install scikit-learn
 import requests
-import scikit-learn
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
