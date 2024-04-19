@@ -2,6 +2,7 @@ import requests
 import streamlit as st
 import pandas as pd
 from PIL.Image import Image
+import keras.models
 from keras.models import load_model
 
 from recommender import get_songs_by_weather, get_movies_by_weather
