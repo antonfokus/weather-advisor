@@ -125,7 +125,7 @@ def main():
     st.header("Предскажет погоду, подскажет фильмы и песни!")
 
     st.subheader('Предсказание температуры')
-    temps = [st.text_input(f'Число {i+1}', value='0') for i in range(10)]
+    temps = [float(st.text_input(f'Число {i+1}', value='0') for i in range(10))]
     if st.button("Предсказать температуру"):
         temps = np.expand_dims(temps, axis=0)
         st.write(temp_model.predict(temps))
