@@ -1,3 +1,4 @@
+sudo pip3 install scikit-learn
 import requests
 import scikit-learn
 import pandas as pd
