@@ -134,7 +134,7 @@ def main():
                     }}
                     
                     [data-testid="stAppViewContainer"]{{
-                        background: url('{background_image}');
+                        background: '{background_image}';
                         background-size: cover;
                     }}
                     
