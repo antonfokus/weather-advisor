@@ -124,8 +124,3 @@ def get_movies_by_weather(weather_col, tf_idf_col, weather_variable, num_of_reco
         ['Title', 'Year', 'Genre', 'Description', 'Rating', 'Director', 'Votes', "Weather"]
     ]
 
-weather_test="Rain"
-test_songs= get_songs_by_weather("Weather", "Track Name", weather_test, 3)
-print(test_songs)
-test_movies= get_movies_by_weather("Weather", "Description", weather_test, 3)
-print(test_movies)
