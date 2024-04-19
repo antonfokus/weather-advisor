@@ -121,7 +121,7 @@ def main():
     st.subheader('Предсказание температуры')
     temps = [st.text_input(f'Число {i+1}', value='0') for i in range(10)]
     if st.button("Предсказать температуру"):
-        st.write(recommended_movies.loc[0, "Title"])
+        st.write(temps)
 
     
     weather = st.selectbox(
