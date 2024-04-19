@@ -66,6 +66,9 @@ def body_style():
 def main():
 
     body_style()
+    left_co, cent_co, last_co = st.columns(3)
+    with cent_co:
+        st.image("assets/logo.png")
     st.title("Погодный Советник")
     st.subheader("Предскажет погоду, подскажет фильмы и песни!")
     weather = st.selectbox(
@@ -148,10 +151,6 @@ def main():
                     st.write(recommended_songs.loc[2, "Album"])
         else:
             st.warning("Пожалуйста, выберите тип погоды.")
-    else:
-        left_co, cent_co, last_co = st.columns(3)
-        with cent_co:
-            st.image("assets/logo.png")
 
 
 if __name__ == "__main__":
