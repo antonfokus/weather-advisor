@@ -116,7 +116,14 @@ def main():
     with cent_co:
         st.image("assets/logo.png")
     st.title("Погодный Советник")
-    st.subheader("Предскажет погоду, подскажет фильмы и песни!")
+    st.header("Предскажет погоду, подскажет фильмы и песни!")
+
+    st.subheader('Предсказание температуры')
+    temps = [st.text_input(f'Число {i+1}', value='0') for i in range(10)]
+    if st.button("Предсказать температуру"):
+        st.write(recommended_movies.loc[0, "Title"])
+
+    
     weather = st.selectbox(
     'Выберите вариант',
     ('drizzle', 'rain', 'sun', 'snow','fog'))
