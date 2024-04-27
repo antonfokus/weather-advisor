@@ -125,7 +125,8 @@ def main():
         st.image("assets/logo.png")
     st.title("Погодный Советник")
     st.header("Предскажет погоду, подскажет фильмы и песни!")
-    
+
+    st.subheader('Рекомендации фильмов и песен')
     weather = st.selectbox(
     'Выберите вариант',
     ('sun', 'drizzle', 'rain', 'snow','fog'))
