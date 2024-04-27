@@ -9,6 +9,7 @@ from keras.models import load_model
 from recommender import get_songs_by_weather, get_movies_by_weather
 
 temp_model = keras.models.load_model("temp_full.keras")
+weather_model = keras.models.load_model("weather_full.keras")
 
 
 weather_images = {
@@ -123,14 +124,6 @@ def main():
         st.image("assets/logo.png")
     st.title("Погодный Советник")
     st.header("Предскажет погоду, подскажет фильмы и песни!")
-
-    st.subheader('Предсказание температуры')
-    temps = [st.text_input(f'Число {i+1}', value='0') for i in range(10)]
-    temps = [float(x) for x in temps]
-    if st.button("Предсказать температуру"):
-        temps = np.expand_dims(temps, axis=0)
-        st.write(temp_model.predict(temps))
-
     
     weather = st.selectbox(
     'Выберите вариант',
@@ -212,6 +205,13 @@ def main():
                     st.write(recommended_songs.loc[2, "Album"])
         else:
             st.warning("Пожалуйста, выберите тип погоды.")
+
+    st.subheader('Предсказание температуры')
+    temps = [st.text_input(f'Число {i+1}', value='0') for i in range(10)]
+    temps = [float(x) for x in temps]
+    if st.button("Предсказать температуру"):
+        temps = np.expand_dims(temps, axis=0)
+        st.write(temp_model.predict(temps))
 
 
 if __name__ == "__main__":
