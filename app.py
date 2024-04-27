@@ -128,7 +128,7 @@ def main():
     
     weather = st.selectbox(
     'Выберите вариант',
-    ('drizzle', 'rain', 'sun', 'snow','fog'))
+    ('sun', 'drizzle', 'rain', 'snow','fog'))
     if st.button("Получить рекомендации"):
         if weather:
             background_image = weather_images.get(weather)
