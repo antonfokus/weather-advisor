@@ -217,6 +217,7 @@ def main():
     st.subheader('Предсказание типа погоды')
     weathers = [st.selectbox(f'Погода в день #{i+1}',('drizzle', 'rain', 'sun', 'snow','fog')) for i in range(10)]
     if st.button("Предсказать погоду"):
+        st.write(weathers)
         coded_weather = [weather_encoding[j] for j in weathers]
         coded_weather = np.array(coded_weather)
         coded_weather = np.reshape(coded_weather,(coded_weather.shape[0],coded_weather.shape[1],1))
