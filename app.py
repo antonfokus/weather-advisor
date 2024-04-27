@@ -10,6 +10,7 @@ from recommender import get_songs_by_weather, get_movies_by_weather
 
 temp_model = keras.models.load_model("temp_full.keras")
 weather_model = keras.models.load_model("weather_full.keras")
+weather_encoding = {"drizzle": 0, "rain": 1, "sun": 2, "snow": 3, "fog": 4}
 
 
 weather_images = {
@@ -207,11 +208,18 @@ def main():
             st.warning("Пожалуйста, выберите тип погоды.")
 
     st.subheader('Предсказание температуры')
-    temps = [st.text_input(f'Число {i+1}', value='0') for i in range(10)]
+    temps = [st.text_input(f'Температура в день #{i+1}', value='0') for i in range(10)]
     temps = [float(x) for x in temps]
     if st.button("Предсказать температуру"):
         temps = np.expand_dims(temps, axis=0)
         st.write(temp_model.predict(temps))
+
+    st.subheader('Предсказание типа погоды')
+    weathers = [st.selectbox(f'Погода в день #{i+1}', value='0',('drizzle', 'rain', 'sun', 'snow','fog')) for i in range(10)]
+    if st.button("Предсказать погоду"):
+        predicted_weather_index = np.argmax(weather_model.predict(weathers))
+        predicted_weather = list(weather_encoding.keys())[predicted_index]
+        st.write(predicted_weather)
 
 
 if __name__ == "__main__":
