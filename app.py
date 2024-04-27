@@ -220,7 +220,7 @@ def main():
         st.write(weathers)
         coded_weather = [weather_encoding[j] for j in weathers]
         coded_weather = np.array(coded_weather)
-        coded_weather = np.reshape(coded_weather,(coded_weather.shape[0],coded_weather.shape[1],1))
+        coded_weather = np.expand_dims(coded_weather, axis=0)
         predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
         predicted_weather = list(weather_encoding.keys())[predicted_index]
         st.write(predicted_weather)
