@@ -208,7 +208,7 @@ def main():
             st.warning("Пожалуйста, выберите тип погоды.")
 
     st.subheader('Предсказание температуры')
-    temps = [st.text_input(f'Температура в день #{i+1}', value=f'random()*10') for i in range(10)]
+    temps = [st.text_input(f'Температура в день #{i+1}', value=f'{np.random.randint(10, 20)}') for i in range(10)]
     temps = [float(x) for x in temps]
     if st.button("Предсказать температуру"):
         temps = np.expand_dims(temps, axis=0)
