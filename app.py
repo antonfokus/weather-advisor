@@ -208,14 +208,14 @@ def main():
             st.warning("Пожалуйста, выберите тип погоды.")
 
     st.subheader('Предсказание температуры')
-    temps = [st.text_input(f'Температура в день #{i+1}', value='0') for i in range(10)]
+    temps = [st.text_input(f'Температура в день #{i+1}', value=f'random()*10') for i in range(10)]
     temps = [float(x) for x in temps]
     if st.button("Предсказать температуру"):
         temps = np.expand_dims(temps, axis=0)
         st.write(temp_model.predict(temps))
 
     st.subheader('Предсказание типа погоды')
-    weathers = [st.selectbox(f'Погода в день #{i+1}',('drizzle', 'rain', 'sun', 'snow','fog')) for i in range(10)]
+    weathers = [st.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')) for i in range(10)]
     if st.button("Предсказать погоду"):
         coded_weather = [weather_encoding[j] for j in weathers]
         coded_weather = np.array(coded_weather)
