@@ -217,8 +217,8 @@ def main():
     st.subheader('Предсказание типа погоды')
     weathers = [st.selectbox(f'Погода в день #{i+1}',('drizzle', 'rain', 'sun', 'snow','fog')) for i in range(10)]
     if st.button("Предсказать погоду"):
-        coded_data = [weather_encoding[day] for day in weathers]
-        predicted_weather_index = np.argmax(weather_model.predict(coded_data))
+        coded_weather = [weather_encoding[j] for j in weathers]
+        predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
         predicted_weather = list(weather_encoding.keys())[predicted_index]
         st.write(predicted_weather)
 
