@@ -116,29 +116,23 @@ def body_style():
         unsafe_allow_html=True,
     )
 
-st.markdown(
-    """
+
+
+def _max_width_():
+    max_width_str = f'max-width: 1400px';
+
+    st.markdown(
+        f"""
     <style>
-    .full-width-form > div {
-        width: 100% !important;
-    }
-    .full-width-form input, .full-width-form select {
-        width: 100% !important;
-    }
+    .reportview-container .main .block-container{{
+        {max_width_str}
+    }}
     </style>
     """,
-    unsafe_allow_html=True
-)
+        unsafe_allow_html=True,
+    ) 
 
-st.markdown("""
-<style>
-    .stForm > div {
-        width: 100%;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-st.set_page_config(layout="wide")
+_max_width_()
 
 def main():
     
