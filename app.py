@@ -131,7 +131,7 @@ st.markdown(
 )
 def main():
 
-    body_style()
+    # body_style()
     left_co, cent_co, last_co = st.columns(3)
     with cent_co:
         st.image("assets/logo.png")
