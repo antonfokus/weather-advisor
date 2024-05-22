@@ -129,14 +129,16 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-def main():
-    st.markdown("""
+
+st.markdown("""
 <style>
     .stForm > div {
         width: 100%;
     }
 </style>
 """, unsafe_allow_html=True)
+def main():
+    
 
     # body_style()
     left_co, cent_co, last_co = st.columns(3)
