@@ -181,7 +181,7 @@ def main():
 
     if submit_button:
         temp_inputs = np.expand_dims(temp_inputs, axis=0)
-        temp_result=temp_model.predict(temp_inputs))
+        temp_result=temp_model.predict(temp_inputs)
 
         coded_weather = [weather_encoding[j] for j in weather_inputs]
         coded_weather = np.array(coded_weather)
