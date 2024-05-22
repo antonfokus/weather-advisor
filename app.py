@@ -33,14 +33,10 @@ weather_colors = {
 
 
 def main():
-    
 
-
-    left_co, cent_co, last_co = st.columns(3)
-    with cent_co:
-        st.image("assets/logo.png")
-        st.title("Погодный Советник")
-        st.header("Предскажет погоду, подскажет фильмы и песни!")
+    st.image("assets/logo.png")
+    st.title(":purple[Погодный Советник])
+    st.header("Предскажет погоду, подскажет фильмы и песни!")
 
     
     with st.form(key="main_form"):
