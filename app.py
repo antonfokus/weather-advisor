@@ -34,8 +34,8 @@ weather_colors = {
 
 def main():
 
-    st.image("assets/logo.png")
-    st.title(:purple[Погодный Советник])
+    st.image("assets/mascot.png")
+    st.title(":purple[Погодный Советник]")
     st.header("Предскажет погоду, подскажет фильмы и песни!")
 
     
