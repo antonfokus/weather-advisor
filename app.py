@@ -116,7 +116,19 @@ def body_style():
         unsafe_allow_html=True,
     )
 
-
+st.markdown(
+    """
+    <style>
+    .full-width-form > div {
+        width: 100% !important;
+    }
+    .full-width-form input, .full-width-form select {
+        width: 100% !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 def main():
 
     body_style()
@@ -126,22 +138,23 @@ def main():
     st.title("Погодный Советник")
     st.header("Предскажет погоду, подскажет фильмы и песни!")
 
-    with st.expander("Fill out the form", expanded=True):
-        with st.form(key="main_form"):
-            # Create columns for temperature inputs
-            temp_cols = st.columns(10)
-            temp_inputs = []
-            for i, col in enumerate(temp_cols):
-                temp_inputs.append(col.text_input(f't° в день #{i+1}', value=f'{np.random.randint(10, 20)}'))
-        
-            # Create columns for weather type inputs
-            weather_cols = st.columns(10)
-            weather_inputs = []
-            for i, col in enumerate(weather_cols):
-                weather_inputs.append(col.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')))
-        
-            # Submit button
-            submit_button = st.form_submit_button(label="Submit")
+    
+    with st.form(key="main_form"):
+        st.markdown('<div class="full-width-form">', unsafe_allow_html=True)
+        # Create columns for temperature inputs
+        temp_cols = st.columns(10)
+        temp_inputs = []
+        for i, col in enumerate(temp_cols):
+            temp_inputs.append(col.text_input(f't° в день #{i+1}', value=f'{np.random.randint(10, 20)}'))
+    
+        # Create columns for weather type inputs
+        weather_cols = st.columns(10)
+        weather_inputs = []
+        for i, col in enumerate(weather_cols):
+            weather_inputs.append(col.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')))
+    
+        # Submit button
+        submit_button = st.form_submit_button(label="Submit")
 
     if submit_button:
         temp_inputs = [float(x) for x in temp_inputs]
