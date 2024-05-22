@@ -35,8 +35,8 @@ weather_colors = {
 def main():
 
     st.image("assets/mascot.png", width=180)
-    st.title(':purple[Погодный Советник]')
-    st.header("Предскажет погоду, подскажет фильмы и песни!")
+    st.title('Привет, я :violet[Погодный Советник]')
+    st.header("Я предскажу погоду:sun_behind_cloud:, подскажу фильмы и песни:sparkles:")
 
     
     with st.form(key="main_form"):
@@ -44,24 +44,27 @@ def main():
         # Create columns for temperature inputs
         temp_cols = st.columns(10)
         temp_inputs = []
+        st.subheader('Какая погода была в предыдущие дни:calendar:?')
+        st.caption('Напиши температуру предыдущих дней:thermometer:')
         for i, col in enumerate(temp_cols):
-            temp_inputs.append(col.text_input(f't° в день #{i+1}', value=f'{15+i*2}'))
+            temp_inputs.append(col.text_input(f'День #{i+1}', value=f'{15+i*2}'))
     
         # Create columns for weather type inputs
         weather_cols = st.columns(10)
         weather_inputs = []
+        st.caption('А какая была погода:thinking_face:?')
         for i, col in enumerate(weather_cols):
-            weather_inputs.append(col.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')))
+            weather_inputs.append(col.selectbox(f'День #{i+1}',('солнце', 'морось', 'дождь','снег','туман')))
     
         # Submit button
-        submit_button = st.form_submit_button(label="Submit")
+        submit_button = st.form_submit_button(label="Предсказать:sparkles:")
 
     if submit_button:
         temp_inputs = [float(x) for x in temp_inputs]
         temp_inputs = np.expand_dims(temp_inputs, axis=0)
         temp_result=temp_model.predict(temp_inputs)
 
-        coded_weather = [weather_encoding[j] for j in weather_inputs]
+        coded_weather = [weather_encoding_ru[j] for j in weather_inputs]
         coded_weather = np.array(coded_weather)
         coded_weather = np.expand_dims(coded_weather, axis=0)
         predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
