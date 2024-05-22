@@ -49,7 +49,7 @@ def main():
         temp_cols = st.columns(10)
         temp_inputs = []
         for i, col in enumerate(temp_cols):
-            temp_inputs.append(col.text_input(f't° в день #{i+1}', value=f'{np.random.randint(10, 20)}'))
+            temp_inputs.append(col.text_input(f't° в день #{i+1}', value=f'{15+i*2}'))
     
         # Create columns for weather type inputs
         weather_cols = st.columns(10)
@@ -71,7 +71,7 @@ def main():
         predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
         predicted_weather = list(weather_encoding.keys())[predicted_weather_index]
 
-        st.subheader(f'Я думаю, что градусник покажет примерно {temp_result}°C, а за окном будет {predicted_weather_ru[predicted_weather_index]}')
+        st.subheader(f'Я думаю, что градусник покажет примерно {temp_result}°C, а за окном будет {weather_encoding_ru[predicted_weather_index]}')
         st.subheader(f"Рекомендации для погоды типа {weather}")
         container = st.container()
         with container:
