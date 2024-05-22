@@ -11,6 +11,7 @@ from recommender import get_songs_by_weather, get_movies_by_weather
 temp_model = keras.models.load_model("temp_full.keras")
 weather_model = keras.models.load_model("weather_full.keras")
 weather_encoding = {"drizzle": 0, "rain": 1, "sun": 2, "snow": 3, "fog": 4}
+weather_encoding_ru = {"морось": 0, "дождь": 1, "солнце": 2, "снег": 3, "туман": 4}
 
 
 weather_images = {
@@ -29,110 +30,7 @@ weather_colors = {
     "fog": "#F4F9FF", 
 }
 
-def footer(background_color=""):
-    st.markdown(
-        f"""
-        <style>
-        .footer {{
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            padding: 10px;
-            text-align: center;
-            background-color: #FF0000;
-        }}
-        
-        .grid-container {{
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 10px;
-        }}
-        .grid-item {{
-            text-align: center;
-        }}
-        .name {{
-            color: white;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
-    st.markdown(
-        """
-        <div class="footer">
-            <div class="grid-container">
-                <div class="grid-item">
-                    <div class="name">Проект погодного советника</div>
-                    <div class="links">
-                    </div>
-                </div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-def body_style():
-    st.markdown(
-        f"""
-        <style>
-        #MainMenu, header, footer {{
-            visibility: hidden;
-        }}
-        body {{
-            background-color: #d3f2ef;
-            font-family: 'Comfortaa', sans-serif !important;
-        }}
-        h1 {{
-            color: #ba66ff;
-            
-        }}
-        label {{
-            color: #d199ff;
-            
-        }}
-
-        img {{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-        }}
-
-        .css-ffhzg2 {{
-            background: rgb(37,29,57);
-            background: -moz-radial-gradient(circle, rgba(37,29,57,1) 0%, rgba(44,45,69,1) 29%, rgba(57,74,90,1) 65%, rgba(76,118,123,1) 95%, rgba(76,118,123,1) 100%, rgba(96,165,158,1) 100%);
-            background: -webkit-radial-gradient(circle, rgba(37,29,57,1) 0%, rgba(44,45,69,1) 29%, rgba(57,74,90,1) 65%, rgba(76,118,123,1) 95%, rgba(76,118,123,1) 100%, rgba(96,165,158,1) 100%);
-            background: radial-gradient(circle, rgba(37,29,57,1) 0%, rgba(44,45,69,1) 29%, rgba(57,74,90,1) 65%, rgba(76,118,123,1) 95%, rgba(76,118,123,1) 100%, rgba(96,165,158,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#251d39",endColorstr="#60a59e",GradientType=1);
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
-
-
-
-def _max_width_():
-    max_width_str = f'max-width: 1400px';
-
-    st.markdown(
-        f"""
-    <style>
-    .reportview-container .main .block-container{{
-        {max_width_str}
-    }}
-    </style>
-    """,
-        unsafe_allow_html=True,
-    ) 
-
-_max_width_()
 
 def main():
     
@@ -173,7 +71,50 @@ def main():
         predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
         predicted_weather = list(weather_encoding.keys())[predicted_weather_index]
 
-        st.write(f'Температура: {temp_result} Погода: {predicted_weather}')
+        st.subheader(f'Я думаю, что градусник покажет примерно {temp_result}°C, а за окном будет {predicted_weather_ru[predicted_weather_index]}')
+        st.subheader(f"Рекомендации для погоды типа {weather}")
+        container = st.container()
+        with container:
+            st.subheader(f"Рекомендуемые фильмы")
+            recommended_movies = get_movies_by_weather("Weather", "Description", predicted_weather, 20)
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.write(recommended_movies.loc[0, "Title"])
+                st.write(recommended_movies.loc[0, "Genre"])
+                st.write(recommended_movies.loc[0, "Rating"])
+                st.write(recommended_movies.loc[0, "Description"])
+
+            with col2:
+                st.write(recommended_movies.loc[1, "Title"])
+                st.write(recommended_movies.loc[1, "Genre"])
+                st.write(recommended_movies.loc[1, "Rating"])
+                st.write(recommended_movies.loc[1, "Description"])
+
+            with col3:
+                st.write(recommended_movies.loc[2, "Title"])
+                st.write(recommended_movies.loc[2, "Genre"])
+                st.write(recommended_movies.loc[2, "Rating"])
+                st.write(recommended_movies.loc[2, "Description"])
+
+        with container:
+            st.subheader(f"Рекомендуемые песни")
+            recommended_songs = get_songs_by_weather("Weather", "Track Name", predicted_weather, 20)
+            # st.dataframe(recommended_songs)
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.write(recommended_songs.loc[0, "Track Name"])
+                st.image(recommended_songs.loc[0, "Image"], use_column_width=True)
+                st.write(recommended_songs.loc[0, "Album"])
+
+            with col2:
+                st.write(recommended_songs.loc[1, "Track Name"])
+                st.image(recommended_songs.loc[1, "Image"], use_column_width=True)
+                st.write(recommended_songs.loc[1, "Album"])
+
+            with col3:
+                st.write(recommended_songs.loc[2, "Track Name"])
+                st.image(recommended_songs.loc[2, "Image"], use_column_width=True)
+                st.write(recommended_songs.loc[2, "Album"])
         
 
     #№№№№№№№№№№№№№№№№№№№№№№№№№№№№
