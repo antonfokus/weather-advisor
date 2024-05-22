@@ -130,6 +130,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 def main():
+    st.markdown("""
+<style>
+    .stForm > div {
+        width: 100%;
+    }
+</style>
+""", unsafe_allow_html=True)
 
     # body_style()
     left_co, cent_co, last_co = st.columns(3)
@@ -140,13 +147,7 @@ def main():
 
     
     with st.form(key="main_form"):
-        st.markdown("""
-<style>
-    .stForm > div {
-        width: 100%;
-    }
-</style>
-""", unsafe_allow_html=True)
+        
         # Create columns for temperature inputs
         temp_cols = st.columns(10)
         temp_inputs = []
