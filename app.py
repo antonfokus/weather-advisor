@@ -140,7 +140,13 @@ def main():
 
     
     with st.form(key="main_form"):
-        st.markdown('<div class="full-width-form">', unsafe_allow_html=True)
+        st.markdown("""
+<style>
+    .stForm > div {
+        width: 100%;
+    }
+</style>
+""", unsafe_allow_html=True)
         # Create columns for temperature inputs
         temp_cols = st.columns(10)
         temp_inputs = []
