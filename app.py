@@ -164,20 +164,20 @@ def main():
                 )
 
     with st.form(key="main_form"):
-    # Create columns for temperature inputs
-    temp_cols = st.columns(10)
-    temp_inputs = []
-    for i, col in enumerate(temp_cols):
-        temp_inputs.append(col.text_input(f't° в день #{i+1}', value=f'{np.random.randint(10, 20)}'))
-
-    # Create columns for weather type inputs
-    weather_cols = st.columns(10)
-    weather_inputs = []
-    for i, col in enumerate(weather_cols):
-        weather_inputs.append(col.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')))
-
-    # Submit button
-    submit_button = st.form_submit_button(label="Submit")
+        # Create columns for temperature inputs
+        temp_cols = st.columns(10)
+        temp_inputs = []
+        for i, col in enumerate(temp_cols):
+            temp_inputs.append(col.text_input(f't° в день #{i+1}', value=f'{np.random.randint(10, 20)}'))
+    
+        # Create columns for weather type inputs
+        weather_cols = st.columns(10)
+        weather_inputs = []
+        for i, col in enumerate(weather_cols):
+            weather_inputs.append(col.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')))
+    
+        # Submit button
+        submit_button = st.form_submit_button(label="Submit")
 
     if submit_button:
         temp_inputs = np.expand_dims(temp_inputs, axis=0)
