@@ -174,7 +174,7 @@ def main():
     weather_cols = st.columns(10)
     weather_inputs = []
     for i, col in enumerate(weather_cols):
-        weather_inputs.append(col.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')'))
+        weather_inputs.append(col.selectbox(f'Погода в день #{i+1}',('sun', 'drizzle', 'rain','snow','fog')))
 
     # Submit button
     submit_button = st.form_submit_button(label="Submit")
