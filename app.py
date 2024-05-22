@@ -36,23 +36,23 @@ def main():
 
     st.image("assets/mascot.png", width=180)
     st.title('Привет, я :violet[Погодный Советник]')
-    st.header("Я предскажу погоду:sun_behind_cloud:, подскажу фильмы и песни:sparkles:")
+    st.header("Я предскажу погоду:sun_behind_cloud:, подскажу фильмы и песни:clapper::musical_note:")
 
     
     with st.form(key="main_form"):
         
         # Create columns for temperature inputs
-        temp_cols = st.columns(10)
-        temp_inputs = []
         st.subheader('Какая погода была в предыдущие дни:calendar:?')
         st.caption('Напиши температуру предыдущих дней:thermometer:')
+        temp_cols = st.columns(10)
+        temp_inputs = []
         for i, col in enumerate(temp_cols):
             temp_inputs.append(col.text_input(f'День #{i+1}', value=f'{15+i*2}'))
     
         # Create columns for weather type inputs
+        st.caption('А какая была погода:thinking_face:?')
         weather_cols = st.columns(10)
         weather_inputs = []
-        st.caption('А какая была погода:thinking_face:?')
         for i, col in enumerate(weather_cols):
             weather_inputs.append(col.selectbox(f'День #{i+1}',('солнце', 'морось', 'дождь','снег','туман')))
     
