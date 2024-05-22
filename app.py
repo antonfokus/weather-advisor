@@ -71,7 +71,7 @@ def main():
         predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
         predicted_weather = list(weather_encoding.keys())[predicted_weather_index]
 
-        st.subheader(f'Я думаю, что градусник покажет примерно {temp_result}°C, а за окном будет {list(weather_encoding_ru.keys())[predicted_weather_index]}')
+        st.subheader(f'Я думаю, что градусник покажет примерно {int(temp_result[0])}°C, а за окном будет {list(weather_encoding_ru.keys())[predicted_weather_index]}')
         
         container = st.container()
         with container:
