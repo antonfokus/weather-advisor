@@ -126,43 +126,6 @@ def main():
     st.title("Погодный Советник")
     st.header("Предскажет погоду, подскажет фильмы и песни!")
 
-    st.subheader('Рекомендации фильмов и песен')
-    weather = st.selectbox(
-    'Выберите вариант',
-    ('sun', 'drizzle', 'rain', 'snow','fog'))
-    if st.button("Получить рекомендации"):
-        if weather:
-            background_image = weather_images.get(weather)
-            weather_color = weather_colors.get(weather)
-            if background_image:
-                st.markdown(
-                    f"""
-                    <style>
-                    h3 {{
-                        color: black;
-                    
-                    }}
-                    
-                    [data-testid="stAppViewContainer"]{{
-                        background: '{background_image}';
-                        background-size: cover;
-                    }}
-                    
-                    div.css-ocqkz7.e1tzin5v3 {{
-                        background-color: {weather_color};
-                        border: 2px solid #CCCCCC;
-                        padding: 5% 5% 5% 10%;
-                        border-radius: 5px;
-                        color: black;
-                        text-align: center;
-                        display: flex;
-                        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-                    }}
-                    </style>
-                    """,
-                    unsafe_allow_html=True
-                )
-
     with st.form(key="main_form"):
         # Create columns for temperature inputs
         temp_cols = st.columns(10)
@@ -180,6 +143,7 @@ def main():
         submit_button = st.form_submit_button(label="Submit")
 
     if submit_button:
+        temp_inputs = [float(x) for x in temp_inputs]
         temp_inputs = np.expand_dims(temp_inputs, axis=0)
         temp_result=temp_model.predict(temp_inputs)
 
