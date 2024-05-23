@@ -79,19 +79,19 @@ def main():
             recommended_movies = get_movies_by_weather("Weather", "Description", predicted_weather, 20)
             col1, col2, col3 = st.columns(3)
             with col1:
-                st.write(f"**{recommended_movies.loc[0, "Title"]}**")
+                st.write(f'**{recommended_movies.loc[0, "Title"]}**')
                 st.write(recommended_movies.loc[0, "Genre"])
                 st.write(recommended_movies.loc[0, "Rating"])
                 st.write(recommended_movies.loc[0, "Description"])
 
             with col2:
-                st.write(f"**{recommended_movies.loc[1, "Title"]}**")
+                st.write(f'**{recommended_movies.loc[1, "Title"]}**')
                 st.write(recommended_movies.loc[1, "Genre"])
                 st.write(recommended_movies.loc[1, "Rating"])
                 st.write(recommended_movies.loc[1, "Description"])
 
             with col3:
-                st.write(f"**{recommended_movies.loc[2, "Title"]}**")
+                st.write(f'**{recommended_movies.loc[2, "Title"]}**')
                 st.write(recommended_movies.loc[2, "Genre"])
                 st.write(recommended_movies.loc[2, "Rating"])
                 st.write(recommended_movies.loc[2, "Description"])
@@ -102,17 +102,17 @@ def main():
             # st.dataframe(recommended_songs)
             col1, col2, col3 = st.columns(3)
             with col1:
-                st.write(f"{recommended_songs.loc[0, "Track Name"]}")
+                st.write(f'{recommended_songs.loc[0, "Track Name"]}')
                 st.write(recommended_songs.loc[0, "Artist"])
                 st.image(recommended_songs.loc[0, "Image"], use_column_width=True)
 
             with col2:
-                st.write(f"{recommended_songs.loc[1, "Track Name"]}")
+                st.write(f'{recommended_songs.loc[1, "Track Name"]}')
                 st.write(recommended_songs.loc[1, "Artist"])
                 st.image(recommended_songs.loc[1, "Image"], use_column_width=True)
 
             with col3:
-                st.write(f"{recommended_songs.loc[2, "Track Name"]}")
+                st.write(f'{recommended_songs.loc[2, "Track Name"]}')
                 st.write(recommended_songs.loc[2, "Artist"])
                 st.image(recommended_songs.loc[2, "Image"], use_column_width=True)
         
