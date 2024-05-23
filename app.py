@@ -72,7 +72,7 @@ def main():
 
         st.subheader(f'Я думаю, что градусник покажет примерно {int(temp_result[0])}°C, а за окном будет {list(weather_encoding_ru.keys())[predicted_weather_index]}')
         
-        container = st.container()
+        container = st.container(border=true)
         with container:
             st.subheader(f"Рекомендуемые фильмы")
             recommended_movies = get_movies_by_weather("Weather", "Description", predicted_weather, 20)
