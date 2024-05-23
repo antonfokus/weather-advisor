@@ -12,7 +12,7 @@ temp_model = keras.models.load_model("temp_full.keras")
 weather_model = keras.models.load_model("weather_full.keras")
 weather_encoding = {"drizzle": 0, "rain": 1, "sun": 2, "snow": 3, "fog": 4}
 weather_encoding_ru = {"морось": 0, "дождь": 1, "солнце": 2, "снег": 3, "туман": 4}
-weather_encoding_ru_text = {':violet[пасмурную:cloud:]': 0, ':blue[дождливую:rain_cloud:]': 1, ':orange[солнечную:sunny:]': 2, ':blue[снежную:snowflake:]': 3, ':gray[туманную:fog:]': 4}
+weather_encoding_ru_text = [':violet[пасмурную:cloud:]', ':blue[дождливую:rain_cloud:]', ':orange[солнечную:sunny:]', ':blue[снежную:snowflake:]', ':gray[туманную:fog:]']
 
 
 weather_images = {
@@ -72,7 +72,7 @@ def main():
         predicted_weather = list(weather_encoding.keys())[predicted_weather_index]
 
         st.subheader(f'Я думаю, что градусник покажет примерно {int(temp_result[0])}°C, а за окном будет {list(weather_encoding_ru.keys())[predicted_weather_index]}')
-        st.subheader(f'А вот что можно посмотреть и послушать в {list(weather_encoding_ru_text.keys())[predicted_weather_index]} погоду')
+        st.subheader(f'А вот что можно посмотреть и послушать в {weather_encoding_ru_text.keys[predicted_weather_index]} погоду')
         container = st.container(border=True)
         with container:
             st.subheader(f"Рекомендуемые фильмы")
