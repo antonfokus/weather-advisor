@@ -76,7 +76,7 @@ def main():
         container = st.container(border=True)
         with container:
             st.subheader(f"Рекомендуемые фильмы")
-            recommended_movies = get_movies_by_weather("Weather", "Description", predicted_weather, 20)
+            recommended_movies = get_movies_by_weather("Weather", "Description", predicted_weather, 10)
             col1, col2, col3 = st.columns(3)
             with col1:
                 st.write(f'**{recommended_movies.loc[0, "Title"]}**')
@@ -98,7 +98,7 @@ def main():
 
         with container:
             st.subheader(f"Рекомендуемые песни")
-            recommended_songs = get_songs_by_weather("Weather", "Track Name", predicted_weather, 20)
+            recommended_songs = get_songs_by_weather("Weather", "Track Name", predicted_weather, 10)
             # st.dataframe(recommended_songs)
             col1, col2, col3 = st.columns(3)
             with col1:
