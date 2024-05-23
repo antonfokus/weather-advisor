@@ -12,7 +12,7 @@ temp_model = keras.models.load_model("temp_full.keras")
 weather_model = keras.models.load_model("weather_full.keras")
 weather_encoding = {"drizzle": 0, "rain": 1, "sun": 2, "snow": 3, "fog": 4}
 weather_encoding_ru = {"морось": 0, "дождь": 1, "солнце": 2, "снег": 3, "туман": 4}
-weather_encoding_ru_text = {":violet[пасмурную:cloud:]": 0, ":blue[дождливую:rain_cloud:]": 1, ":orange[солнечную:sunny:]": 2, ":blue[снежную:snowflake:]": 3, ":gray[туманную:fog:]": 4}
+weather_encoding_ru_text = {':violet[пасмурную:cloud:]': 0, ':blue[дождливую:rain_cloud:]': 1, ':orange[солнечную:sunny:]': 2, ':blue[снежную:snowflake:]': 3, ':gray[туманную:fog:]': 4}
 
 
 weather_images = {
