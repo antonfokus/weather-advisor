@@ -71,8 +71,8 @@ def main():
         predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
         predicted_weather = list(weather_encoding.keys())[predicted_weather_index]
 
-        st.subheader(f'Я думаю, что градусник покажет примерно {int(temp_result[0])}°C, а за окном будет {list(weather_encoding_ru.keys())[predicted_weather_index]}')
-        st.subheader(f'А вот что можно посмотреть и послушать в {list(weather_encoding_ru_text.keys())[predicted_weather_index]} погоду')
+        st.subheader(f'Я думаю, что градусник покажет примерно {int(temp_result[0])}°C, а за окном будет {list(weather_encoding_ru.keys())[predicted_weather_index[0]]}')
+        st.subheader(f'А вот что можно посмотреть и послушать в {list(weather_encoding_ru_text.keys())[predicted_weather_index[0]]} погоду')
         container = st.container(border=True)
         with container:
             st.subheader(f"Рекомендуемые фильмы")
