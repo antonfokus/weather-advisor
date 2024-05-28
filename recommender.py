@@ -8,8 +8,6 @@ pd.set_option("display.width", 500)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
 spotify_data_ = pd.read_csv("spotify_weather_data.csv")
 imdb_data_ = pd.read_csv("imdb_movies_weather_data.csv")
@@ -41,11 +39,12 @@ def get_songs_by_weather(weather_col, tf_idf_col, weather_variable, num_of_recom
     # При создании случайных индексов мы узнаем количество песен, отфильтрованных выше.
     num_songs_available = len(filtered_songs)
 
-    # Текст
+    # Создаём объект для преобразования текстовых данных в матрицу признаков, где каждое значение представляет собой TF-IDF (Term Frequency-Inverse Document Frequency) показатель
+    # Получаем разреженную матрицу, где строки соответствуют документам, а столбцы — уникальным терминам из всего корпуса текстов. Значения в матрице представляют собой весовые коэффициенты TF-IDF для каждой пары документ-термин
     tfidf = TfidfVectorizer()
     tfidf_matrix = tfidf.fit_transform(filtered_songs[tf_idf_col])
 
-    # Вычисляем сходство
+    # Косинусное сходство измеряет угол между двумя векторами, представляющими документы. Значения сходства варьируются от -1 (полностью противоположные) до 1 (полностью идентичные)
     cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
     # Создание случайных индексов для выбора песни
@@ -94,11 +93,12 @@ def get_movies_by_weather(weather_col, tf_idf_col, weather_variable, num_of_reco
     # При создании случайных индексов мы узнаем количество фильмов, отфильтрованных выше.
     num_movies_available = len(filtered_movies)
 
-    # Текст
+    # Создаём объект для преобразования текстовых данных в матрицу признаков, где каждое значение представляет собой TF-IDF (Term Frequency-Inverse Document Frequency) показатель
+    # Получаем разреженную матрицу, где строки соответствуют документам, а столбцы — уникальным терминам из всего корпуса текстов. Значения в матрице представляют собой весовые коэффициенты TF-IDF для каждой пары документ-термин
     tfidf = TfidfVectorizer()
     tfidf_matrix = tfidf.fit_transform(filtered_movies[tf_idf_col])
 
-    # Вычисляем сходство
+    # Косинусное сходство измеряет угол между двумя векторами, представляющими документы. Значения сходства варьируются от -1 (полностью противоположные) до 1 (полностью идентичные)
     cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
 
     # Создание случайных индексов для выбора фильмов
