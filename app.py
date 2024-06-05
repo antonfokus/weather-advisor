@@ -57,7 +57,7 @@ def main():
         coded_weather = np.array(coded_weather)
         coded_weather = np.expand_dims(coded_weather, axis=0)
         # Предсказание типа погоды с использованием нейромодели
-        predicted_weather_index = np.argmax(weather_model.predict(coded_weather))
+        predicted_weather_index = np.argmax(weather_model(coded_weather))
         predicted_weather = list(weather_encoding.keys())[predicted_weather_index]
 
         # Вывод полученных предсказаний
