@@ -61,7 +61,7 @@ def main():
         predicted_weather = list(weather_encoding.keys())[predicted_weather_index]
 
         # Вывод полученных предсказаний
-        st.subheader(f'Я думаю, что градусник покажет примерно {int(temp_result[0])}°C, а за окном будет {list(weather_encoding_ru.keys())[predicted_weather_index]}')
+        st.subheader(f'Я думаю, что градусник покажет примерно {int(temp_result[0])}°C, а за окном будет {weather_encoding_ru.get(predicted_weather_index)}')
         st.subheader(f'А вот что можно посмотреть и послушать в {weather_encoding_ru_text[predicted_weather_index]} погоду')
         container = st.container(border=True)
         with container:
