@@ -15,22 +15,7 @@ weather_model = keras.models.load_model("weather_full.keras")
 weather_encoding = {"drizzle": 0, "rain": 1, "sun": 2, "snow": 3, "fog": 4}
 weather_encoding_ru = {"морось": 0, "дождь": 1, "солнце": 2, "снег": 3, "туман": 4}
 weather_encoding_ru_text = [':violet[пасмурную:cloud:]', ':blue[дождливую:rain_cloud:]', ':orange[солнечную:sunny:]', ':blue[снежную:snowflake:]', ':gray[туманную:fog:]']
-
-weather_images = {
-    "sun": "assets/img_sun.jpeg",
-    "rain": "assets/img_rain.jpeg",
-    "drizzle": "assets/img_drizzle.jpeg",
-    "fog": "assets/img_fog.jpeg",
-    "snow": "assets/img_snow.jpeg",
-}
-
-weather_colors = {
-    "sun": "#E6F4F1",
-    "rain": "#D8E6ED",
-    "drizzle": "#FAF8FF",
-    "snow": "#F3FAFF", 
-    "fog": "#F4F9FF", 
-}
+HISTORY=4
 
 def main():
 
@@ -44,14 +29,14 @@ def main():
         # Получение предыдущей температуры
         st.subheader('Какая погода была в предыдущие дни:calendar:?')
         st.caption('Напиши температуру предыдущих дней:thermometer:')
-        temp_cols = st.columns(10)
+        temp_cols = st.columns(HISTORY)
         temp_inputs = []
         for i, col in enumerate(temp_cols):
             temp_inputs.append(col.text_input(f'День #{i+1}', value=f'{15+i*2}'))
     
         # Получение предыдущих типов погоды 
         st.caption('А какая была погода:thinking_face:?')
-        weather_cols = st.columns(10)
+        weather_cols = st.columns(HISTORY)
         weather_inputs = []
         for i, col in enumerate(weather_cols):
             weather_inputs.append(col.selectbox(f'День #{i+1}',('солнце', 'морось', 'дождь','снег','туман')))
