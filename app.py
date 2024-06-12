@@ -10,8 +10,8 @@ from keras.models import load_model
 from recommender import get_songs_by_weather, get_movies_by_weather
 
 # Импортируем нейромодели для предсказания погоды
-temp_model = keras.models.load_model("assets/temp_full.keras")
-weather_model = keras.models.load_model("assets/weather_full.keras")
+temp_model = keras.models.load_model("temp_full.keras")
+weather_model = keras.models.load_model("weather_full.keras")
 weather_encoding = {"drizzle": 0, "rain": 1, "sun": 2, "snow": 3, "fog": 4}
 weather_encoding_ru = {"морось": 0, "дождь": 1, "солнце": 2, "снег": 3, "туман": 4}
 weather_encoding_ru_text = [':violet[пасмурную:cloud:]', ':blue[дождливую:rain_cloud:]', ':orange[солнечную:sunny:]', ':blue[снежную:snowflake:]', ':gray[туманную:fog:]']
