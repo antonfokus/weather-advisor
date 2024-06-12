@@ -9,8 +9,8 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
 
 
-spotify_data_ = pd.read_csv("assets/spotify_weather_data.csv")
-imdb_data_ = pd.read_csv("assets/imdb_movies_weather_data.csv")
+spotify_data_ = pd.read_csv("spotify_weather_data.csv")
+imdb_data_ = pd.read_csv("imdb_movies_weather_data.csv")
 
 
 
